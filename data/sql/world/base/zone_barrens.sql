@@ -1203,3 +1203,30 @@ INSERT INTO `waypoint_data` (`id`, `point`, `position_x`, `position_y`, `positio
 (205660, 25, -1243.66, -2177.42, 91.668, 5.17525, 0, 1, 0, 100, 0),
 (205660, 26, -1237.85, -2190.07, 91.9052, 5.19095, 0, 1, 0, 100, 0),
 (205660, 27, -1225, -2248.77, 92.332, 5.20273, 0, 1, 0, 100, 0);
+
+-- Script end event for quest Fungal Spores (ported from CMaNGOS TBC)
+UPDATE `creature_template` SET `AIName` = "SmartAI" WHERE `entry` = 3390;
+
+DELETE FROM `smart_scripts` WHERE `entryorguid` = 3390 AND `source_type` = 0;
+DELETE FROM `smart_scripts` WHERE `entryorguid` = 339000 AND `source_type` = 9;
+INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`,
+`event_type`, `event_phase_mask`, `event_chance`, `event_flags`, `event_param1`, `event_param2`, `event_param3`, `event_param4`, `event_param5`, `event_param6`,
+`action_type`, `action_param1`, `action_param2`, `action_param3`, `action_param4`, `action_param5`, `action_param6`,
+`target_type`, `target_param1`, `target_param2`, `target_param3`, `target_param4`, `target_x`, `target_y`, `target_z`, `target_o`, `comment`) VALUES
+--
+(3390, 0, 0, 0, 20, 0, 100, 0, 848, 0, 0, 0, 0, 0, 80, 339000, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,         "Apothecary Helbrim - On Quest 'Fungal Spores' Turned In - Run Script 339000"),
+--
+(339000, 9, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 48, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,               "Script9 - Apothecary Helbrim - Set Active"),
+(339000, 9, 1, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 83, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,               "Script9 - Apothecary Helbrim - Remove NpcFlags Questgiver"),
+(339000, 9, 2, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 66, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 4.356,           "Script9 - Apothecary Helbrim - Change Orientation"),
+(339000, 9, 3, 0, 0, 0, 100, 0, 1000, 1000, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,          "Script9 - Apothecary Helbrim - Say Text 0"),
+(339000, 9, 4, 0, 0, 0, 100, 0, 1000, 1000, 0, 0, 0, 0, 93, 0, 0, 0, 0, 0, 0, 20, 4166, 30, 0, 0, 0, 0, 0, 0,    "Script9 - Apothecary Helbrim - Send Go Custom Anim"),
+(339000, 9, 5, 0, 0, 0, 100, 0, 5000, 5000, 0, 0, 0, 0, 66, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,         "Script9 - Apothecary Helbrim - Reset Orientation"),
+(339000, 9, 6, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,                "Script9 - Apothecary Helbrim - Say Text 1"),
+(339000, 9, 7, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 82, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,               "Script9 - Apothecary Helbrim - Add NpcFlags Questgiver"),
+(339000, 9, 8, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,               "Script9 - Apothecary Helbrim - Set Inactive");
+
+UPDATE `creature_text` SET `Emote`=1 WHERE `CreatureID`=3390 AND `GroupID`=1;
+DELETE FROM `creature_text` WHERE `CreatureID`=3390 AND `GroupID`=1 AND `ID`=1;
+INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
+(3390, 1, 1, "Thank you for the spores, $n.  They are now prepared for transport.", 12, 0, 100, 1, 0, 0, 1078, 0, "Apothecary Helbrim");
