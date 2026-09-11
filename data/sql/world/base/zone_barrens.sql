@@ -1226,7 +1226,7 @@ INSERT INTO `smart_scripts` (`entryorguid`, `source_type`, `id`, `link`,
 (339000, 9, 7, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 82, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,               "Script9 - Apothecary Helbrim - Add NpcFlags Questgiver"),
 (339000, 9, 8, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,               "Script9 - Apothecary Helbrim - Set Inactive");
 
-UPDATE `creature_text` SET `Emote`=1 WHERE `CreatureID`=3390 AND `GroupID`=1;
-DELETE FROM `creature_text` WHERE `CreatureID`=3390 AND `GroupID`=1 AND `ID`=1;
+UPDATE `creature_text` SET `Emote` = 1 WHERE `CreatureID` = 3390 AND `GroupID` = 1;
+DELETE FROM `creature_text` WHERE `CreatureID` = 3390 AND `GroupID` = 1 AND `ID` = 1;
 INSERT INTO `creature_text` (`CreatureID`, `GroupID`, `ID`, `Text`, `Type`, `Language`, `Probability`, `Emote`, `Duration`, `Sound`, `BroadcastTextId`, `TextRange`, `comment`) VALUES
 (3390, 1, 1, "Thank you for the spores, $n.  They are now prepared for transport.", 12, 0, 100, 1, 0, 0, 1078, 0, "Apothecary Helbrim");
